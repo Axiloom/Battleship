@@ -1,65 +1,16 @@
 import java.util.Scanner;
 import java.util.Random;
 
-//////////////////// ALL ASSIGNMENTS INCLUDE THIS SECTION /////////////////////
-//
-// Title:           Battleship
-// Files:           Battleship.java, TestBattleship.java, Config.java
-// Course:          CS200, Spring, 2018
-//
-// Author:          John Bednarczyk
-// Email:           jbednarczyk@wisc.edu
-// Lecturer's Name: Marc Renault
-//
-//////////////////// PAIR PROGRAMMERS COMPLETE THIS SECTION ///////////////////
-//
-// Partner Name:    Joe Lessner
-// Partner Email:   jalessner@wisc.edu
-// Lecturer's Name: Marc Renault
-// 
-// VERIFY THE FOLLOWING BY PLACING AN X NEXT TO EACH TRUE STATEMENT:
-//   _X_ Write-up states that pair programming is allowed for this assignment.
-//   _X_ We have both read and understand the course Pair Programming Policy.
-//   _X_ We have registered our team prior to the team registration deadline.
-//
-///////////////////////////// CREDIT OUTSIDE HELP /////////////////////////////
-//
-// Students who get help from sources other than their partner must fully 
-// acknowledge and credit those sources of help here.  Instructors and TAs do 
-// not need to be credited here, but tutors, friends, relatives, room mates 
-// strangers, etc do.  If you received no outside help from either type of 
-// source, then please explicitly indicate NONE.
-//
-// Persons:         (identify each person and describe their help in detail)
-// Online Sources:  (identify each URL and describe their assistance in detail)
-//
-/////////////////////////////// 80 COLUMNS WIDE ///////////////////////////////
-
-
 public class Battleship {
 
     /**
-     * This method converts a String representing a base (or radix) 26 number into a decimal (or base 10) number. The String representation of the base 26 number uses the letters of the Latin alphabet to represent the 26 digits. That is, A represents 0, B represents 1, C 
-     * represents 2, ..., Y represents 24,  and Z represents 25.
+     * This method converts a String representing a base (or radix) 26 number into a decimal (or base 10) number.
      *
-     * A couple of examples:
-       BAAA = 1 * 26^3 + 0 * 26^2 + 0 * 26^1 + 0 * 26^0 = 17576
-     * ZERTY = 25 * 26^4 + 4 * 26^3 + 17 * 26^2 + 19 * 26^1 + 24 * 26^0 = 11506714
-     *
-     * For this method:
-     *   - use Math.pow to calculate the powers of 26.
-     *   - don't assume that the input is in any particular case; use toUpperCase().
-     *   - don't check that the input is only 'A' to 'Z'.
-     *   - calculate the value of each digit relative to 'A'.
-     *   - start from either the first or last character, and calculate the exponent based on the
-     *     index of each character.
-     *
-     * @param coord The coordinate value in base 26 as described above. 
+     * @param coord The coordinate value in base 26.
      * @return The numeric representation of the coordinate.
      */
     public static int coordAlphaToNum(String coord) {
-        
-        //Variables
+
         coord = coord.toUpperCase();
         int count = 0;
         int x = 0;
@@ -75,24 +26,13 @@ public class Battleship {
 
     /**
      * This method converts an int value into a base (or radix) 26 number, where the digits are 
-     * represented by the 26 letters of the Latin alphabet. That is, A represents 0, B represents 1,
-     * C represents 2, ..., Y represents 24,  and Z represents 25. 
-     * A couple of examples: 17576 is BAAA, 11506714 is ZERTY.
-     *
-     * The algorithm to convert an int to a String representing these base 26 numbers is as follows:
-     * - Initialize res to the input integer
-     * - The next digit is determined by calculating the remainder of res with respect to 26
-     * - Convert this next digit to a letter based on 'A'
-     * - Set res to the integer division of res and 26
-     * - Repeat until res is 0
+     * represented by the 26 letters of the Latin alphabet.
      *
      * @param coord The integer value to covert into an alpha coordinate.
-     * @return The alpha coordinate in base 26 as described above. If coord is negative, an empty 
-     *         string is returned.
+     * @return The alpha coordinate in base 26. If coord is negative, an empty string is returned.
      */
     public static String coordNumToAlpha(int coord) {
-        
-        //Variables
+
         int alphabetLetter = 0;
         char letter = '\n';
         String res = "";
@@ -123,16 +63,7 @@ public class Battleship {
     }
 
     /**
-     * Prompts the user for an integer value, displaying the following:
-     *     "Enter the valName (min to max): "
-     * Note: There should not be a new line terminating the prompt. valName should contain the 
-     * contents of the String referenced by the parameter valName. min and max should be the values 
-     * passed in the respective parameters.
-     *
-     * After prompting the user, the method will read an int from the console and consume an entire
-     * line of input. If the value read is between min and max (inclusive), that value is returned.
-     * Otherwise, "Invalid value." terminated by a new line is output and the user is prompted 
-     * again. 
+     * Prompts the user for an integer value.
      *
      * @param sc The Scanner instance to read from System.in.
      * @param valName The name of the value for which the user is prompted.
@@ -170,16 +101,7 @@ public class Battleship {
         }
 
     /**
-     * Prompts the user for an String value, displaying the following:
-     *     "Enter the valName (min to max): "
-     * Note: There should not be a new line terminating the prompt. valName should contain the 
-     * contents of the String referenced by the parameter valName. min and max should be the values 
-     * passed in the respective parameters.
-     *
-     * After prompting the user, the method will read an entire line of input, trimming any trailing 
-     * or leading whitespace. If the value read is (lexicographically ignoring case) between min and
-     * max (inclusive), that value is returned. Otherwise, "Invalid value." terminated by a new line 
-     * is output and the user is prompted again. 
+     * Prompts the user for an String value.
      *
      * @param sc The Scanner instance to read from System.in.
      * @param valName The name of the value for which the user is prompted.
@@ -188,8 +110,7 @@ public class Battleship {
      * @return Returns the value read from the user.
      */
     public static String promptStr(Scanner sc, String valName, String min, String max) { // Rewrite to accept multiple characters
-        
-        //Variables
+
         String string;
         
         //Prompts the user and stores input into string
@@ -216,11 +137,7 @@ public class Battleship {
 
     /**
      * Prompts the user for an char value. The prompt displayed is the contents of the String 
-     * referenced by the prompt parameter. 
-     * Note: There should not be a new line terminating the prompt. 
-     *
-     * After prompting the user, the method will read an entire line of input and return the first
-     * non-whitespace character in lower case.
+     * referenced by the prompt parameter.
      *
      * @param sc The Scanner instance to read from System.in
      * @param prompt The user prompt.
@@ -228,8 +145,7 @@ public class Battleship {
      *         there are no non-whitespace characters read, the null character is returned.
      */
     public static char promptChar(Scanner sc, String prompt) {
-        
-        //Variables
+
         char character;
         String string;
         
@@ -268,24 +184,18 @@ public class Battleship {
 
     /**
      * Prints the game boards as viewed by the user. This method is used to print the 
-     * game boards as the user is placing their ships and during the game play. 
-     *
-     * Some notes on the display:
-     *   - Each column printed will have a width of Config.MAX_COL_WIDTH.
-     *   - Each row is followed by an empty line.
-     *   - The values in the headers and cells are to be right justified.
+     * game boards as the user is placing their ships and during the game play.
      *
      * @param board The board to print.
      * @param caption The board caption.
      */
     public static void printBoard(char board[][], String caption) {
-        
-        //Prints caption
-        System.out.println(caption);
-        
-	//Variables
+
         int x = 65;
         int tracker = board[0].length;
+
+        //Prints caption
+        System.out.println(caption);
         
         //Prints column header
         System.out.print("   ");
@@ -404,30 +314,26 @@ public class Battleship {
      * @return true if all the ships have been sunk, false otherwise.
      */
     public static boolean checkLost(char board[][]) {
-        
-	//Variables
+
         int counter = 0;
         int totalSpaces = board.length * board[0].length;
-        
-        for (int i = 0 ; i < board.length ; i++) {
-            for (int j = 0 ; j < board[0].length ; j++) {
-                if (board[i][j] == Config.MISS_CHAR || board[i][j] == Config.HIT_CHAR || board[i][j] == Config.WATER_CHAR) {
+
+        for (char[] aBoard : board) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (aBoard[j] == Config.MISS_CHAR || aBoard[j] == Config.HIT_CHAR || aBoard[j] == Config.WATER_CHAR) {
                     counter++;
                 }
             }
         }
-        
-        if (counter == totalSpaces) {
-            return true;
-        }
-        
-        return false;
+
+        return counter == totalSpaces;
+
     }
+
     /**
      * Places a ship into a game board. The coordinate passed in the parameters xcoord and ycoord
      * represent the top-left coordinate of the ship. The ship is represented on the game board by
-     * the Character representation of the ship id. (For this method, you can assume that the id
-     * parameter will only be values 1 through 9.)
+     * the Character representation of the ship id.
      *
      * @param board The game board to search.
      * @param xcoord The x-coordinate of the top-left cell of the ship.
@@ -437,13 +343,11 @@ public class Battleship {
      * @param id The ship id, assumed to be 1 to 9.
      * @return false if the ship goes out-of-bounds of the board, true otherwise.
      */
-
     public static boolean placeShip(char board[][], int xcoord, int ycoord, int len, boolean dir, int id) {
-        
-	//Variables
+
         char shipId = (char)(id + 48);
         
-        while (checkWater(board, xcoord, ycoord, len, dir) == 1) {
+        if (checkWater(board, xcoord, ycoord, len, dir) == 1) {
             
             //Vertical placement
             if (dir) {
@@ -463,22 +367,9 @@ public class Battleship {
         }
         return false;
     }
+
     /**
-     * Randomly attempts to place a ship into a game board. The random process is as follows:
-     *   1 - Pick a random boolean, using rand. True represents vertical, false horizontal.
-     *   2 - Pick a random integer, using rand, for the x-coordinate of the top-left cell of the 
-     *       ship. The number of integers to choose from should be calculated based on the width of
-     *       the board and length of the ship such that the placement of the ship won't be 
-     *       out-of-bounds.
-     *   3 - Pick a random integer, using rand, for the y-coordinate of the top-left cell of the 
-     *       ship. The number of integers to choose from should be calculated based on the height of
-     *       the board and length of the ship such that the placement of the ship won't be 
-     *       out-of-bounds.
-     *   4 - Verify that this random location can fit the ship without intersecting another ship 
-     *       (checkWater method). If so, place the ship with the placeShip method.
-     *
-     * It is possible for the configuration of a board to be such that a ship of a given length may
-     * not fit. So, the random process will be attempted at most Config.RAND_SHIP_TRIES times.
+     * Randomly attempts to place a ship into a game board.
      * 
      * @param board The game board to search.
      * @param len The length of the ship.
@@ -486,10 +377,8 @@ public class Battleship {
      * @param rand The Random object.
      * @return true if the ship is placed successfully, false otherwise.
      */
-    
     public static boolean placeRandomShip(char board[][], int len, int id, Random rand) {
-        
-    	//Variables
+
         int placementTest = 0; 
         int xcoord;
         int ycoord;
@@ -498,17 +387,17 @@ public class Battleship {
             
             boolean dir = rand.nextBoolean();
             
-            if (dir == true) {
+            if (dir) {
                 
                 //Gets random x-coordinate that fits on board
-                xcoord = rand.nextInt(board[0].length) + 0;
+                xcoord = rand.nextInt(board[0].length);
                 
                 //Gets random y-coordinate that fits on board
                 if (len > board.length) {
                     ycoord = rand.nextInt(1);
                 }
                 else {
-                    ycoord = rand.nextInt((board.length  - len) + 1) + 0;
+                    ycoord = rand.nextInt((board.length  - len) + 1);
                 }
                 
                 //Checks to see if the ship can be placed
@@ -527,11 +416,11 @@ public class Battleship {
                     xcoord = rand.nextInt(1);
                 }
                 else {
-                    xcoord = rand.nextInt((board[0].length + 1) - len) + 0;
+                    xcoord = rand.nextInt((board[0].length + 1) - len);
                 }
 
                 //Gets random y-coordinate that fits on board
-                ycoord = rand.nextInt(board.length) + 0;
+                ycoord = rand.nextInt(board.length);
                 
                 //Checks to see if the ship can be placed
                 placementTest = checkWater(board, xcoord, ycoord, len, dir);
@@ -548,31 +437,7 @@ public class Battleship {
     
     /**
      * This method interacts with the user to place a ship on the game board of the human player and
-     * the computer opponent. The process is as follows:
-     *   1 - Print the user primary board, using the printBoard.
-     *   2 - Using the promptChar method, prompt the user with "Vertical or horizontal? (v/h) ".
-     *       A response of v is interpreted as vertical. Anything else is assumed to be horizontal.
-     *   3 - Using the promptInt method, prompt the user for an integer representing the 
-     *       "ship length", where the minimum ship length is Config.MIN_SHIP_LEN and the maximum 
-     *       ship length is width or height of the game board, depending on the input of the user 
-     *       from step 1.
-     *   4 - Using the promptStr method, prompt the user for the "x-coord". The maximum value
-     *       should be calculated based on the width of the board and the length of the ship. You 
-     *       will need to use the coordAlphaToNum and coordNumToAlpha methods to covert between int
-     *       and String values of coordinates.
-     *   5 - Using the promptInt method, prompt the user for the "y-coord". The maximum value
-     *       should be calculated based on the width of the board and the length of the ship.
-     *   6 - Check if there is space on the board to place the ship. 
-     *     6a - If so:
-     *             - Place the ship on the board using placeShip. 
-     *             - Then, call placeRandomShip to place the opponents ships of the same length.
-     *             - If placeRandomShip fails, print out the error message (terminated by a new 
-     *               line): "Unable to place opponent ship: id", where id is the ship id, and 
-     *               return false.
-     *     6b - If not:
-     *             - Using promptChar, prompt the user with "No room for ship. Try again? (y/n): "
-     *             - If the user enters a 'y', restart the process at Step 1. 
-     *             - Otherwise, return false.
+     * the computer opponent.
      *
      * @param sc The Scanner instance to read from System.in.
      * @param boardPrime The human player board.
@@ -582,15 +447,14 @@ public class Battleship {
      * @return true if ship placed successfully by player and computer opponent, false otherwise.
      */
     public static boolean addShip(Scanner sc, char boardPrime[][], char boardOpp[][], int id, Random rand) {
-        
-        //Variables
-    	boolean dir = true; //true = 'v', false = 'h', Needed for checkWater method
-    	char direction = '\0';
-    	int shipLength = 0;
-    	String xcoordStr = "";
-    	int xcoord = 0;
-    	int ycoord = 0;
-    	int shipCheck = 0; //value returned by checkWater method for checking if ship can fit
+
+    	  boolean dir = true; //true = 'v', false = 'h', Needed for checkWater method
+    	  char direction = '\0';
+    	  int shipLength = 0;
+    	  String xcoordStr = "";
+    	  int xcoord = 0;
+    	  int ycoord = 0;
+    	  int shipCheck = 0; //value returned by checkWater method for checking if ship can fit
         boolean testRandShip;
         char restartQuestion;
         
@@ -605,13 +469,8 @@ public class Battleship {
                 
           	 	//Prompts for vertical or horizontal placement via promptChar method
           	 	direction = promptChar(sc, "Vertical or horizontal? (v/h): ");
-          	 
-          	 	if (direction == 'v') {
-          		 	dir = true;
-          	 	}
-          	 	else {
-          		 	dir = false;
-          	 	}
+
+                dir = direction == 'v';
         
         	 	//Vertical placement
         	 	if (dir) {
@@ -653,7 +512,7 @@ public class Battleship {
         	 	}
         	 	
         	 	//Horizontal placement
-        	 	else if (!dir) {
+        	 	else {
         
                     //Prompts for ship length using promptInt method
             		shipLength = promptInt(sc, "ship length", Config.MIN_SHIP_LEN, boardPrime[0].length);
@@ -693,14 +552,12 @@ public class Battleship {
         	    }
             }
             shipCheck = 0;
-	    direction = '\0';
         }
         return true;
     }
 
     /**
-     * Checks the state of a targeted cell on the game board. This method does not change the 
-     * contents of the game board.
+     * Checks the state of a targeted cell on the game board.
      *
      * @return  3 if the cell was previously targeted.
      *          2 if the shot would be a miss.
@@ -730,21 +587,7 @@ public class Battleship {
     }
 
     /**
-     * Interacts with the user to take a shot. The procedure is as follows:
-     *   1 - Using the promptStr method, prompt the user for the "x-coord shot". The maximum value
-     *       should be based on the width of the board. You will need to use the coordAlphaToNum 
-     *       and coordNumToAlpha methods to covert between int and String values of coordinates.
-    
-     *   2 - Using the promptInt method, prompt the user for the "y-coord shot". The maximum value
-     *       should be calculated based on the width of the board.
-    
-     *   3 - Check the shot, using the takeShot method. If it returns:
-     *        -1: Print out an error message "Coordinates out-of-bounds!", terminated by a new line.
-     *         3: Print out an error message "Shot location previously targeted!", terminated by a
-     *            new line.
-     *         1 or 2: Update the cells in board and boardTrack with Config.HIT_CHAR or 
-     *                 Config.MISS_CHAR accordingly.
-     *   This process should repeat until the takeShot method returns 1 or 2.
+     * Interacts with the user to take a shot.
      *
      * @param sc The Scanner instance to read from System.in.
      * @param board The computer opponent board (containing the ship placements).
@@ -801,16 +644,7 @@ public class Battleship {
     }
 
     /**
-     * Takes a random shot on the game board. The random process works as follows:
-     *   1 - Pick a random valid x-coordinate
-     *   2 - Pick a random valid y-coordinate
-     *   3 - Check the shot, using the takeShot method. 
-     *   This process should repeat until the takeShot method returns 1 or 2, then update the cells
-     *   in board with Config.HIT_CHAR or Config.MISS_CHAR accordingly.
-     *
-     * Note: Unlike the placeRandomShip method, this method continues until it is successful. This
-     * may seem risky, but in this case the random process will terminate (find an untargeted cell)
-     * fairly quickly. For more details, see the appendix of the Big Program 1 subject.
+     * Takes a random shot on the game board.
      *
      * @param rand The Random object.
      * @param board The human player game board.
@@ -849,44 +683,20 @@ public class Battleship {
     }
 
     /**
-     * This is the main method for the Battleship game. It consists of the main game and play again
-     * loops with calls to the various supporting methods. When the program launches (prior to the 
-     * play again loop), a message of "Welcome to Battleship!", terminated by a newline, is 
-     * displayed. After the play again loop terminiates, a message of "Thanks for playing!", 
-     * terminated by a newline, is displayed.
-     *
-     * The Scanner object to read from System.in and the Random object with a seed of Config.SEED 
-     * will be created in the main method and used as arguments for the supporting methods as 
-     * required.
-     *
-     * Also, the main method will require 3 game boards to track the play:
-     * - One for tracking the ship placement of the user and the shots of the computer, called the
-     *   primary board with a caption of "My Ship".
-     * - One for displaying the shots (hits and misses) taken by the user, called the tracking board
-     *   with a caption of "My Shots"; and one for tracking the ship placement of the computer and 
-     *   the shots of the user. 
-     * - The last board is never displayed, but is the primary board for the computer and is used to
-     *   determine when a hit or a miss occurs and when all the ships of the computer have been 
-     *   sunk. 
-     * Notes:
-     *   - The size of the game boards are determined by the user input.  
-     *   - The game boards are 2d arrays that are to be viewed as row-major order. This means that 
-     *     the first dimension represents the y-coordinate of the game board (the rows) and the 
-     *     second dimension represents the x-coordinate (the columns).
+     * This is the main method for the Battleship game.
      *
      * @param args Unused.
      */
     public static void main(String[] args) {
-        
+
+        boolean playAgain = true;
+        char selection;
+
         //Creates a scanner object
         Scanner sc = new Scanner(System.in);
         
         //Creates a random object
         Random rand = new Random(Config.SEED);
-        
-        //Variables
-        boolean playAgain = true;
-        char selection;
     
         System.out.println("Welcome to Battleship!");
         
@@ -952,12 +762,12 @@ public class Battleship {
             }
             
             if (checkLost(boardOpp)) {
-		System.out.println("Congratulations, you sunk all the computer's ships!");
+		            System.out.println("Congratulations, you sunk all the computer's ships!");
                 printBoard(boardPrime, "My Ships:");
                 printBoard(boardTrack, "My Shots:");
             }
             else if (checkLost(boardPrime)) {
-		System.out.println("Oh no! The computer sunk all your ships!");
+		            System.out.println("Oh no! The computer sunk all your ships!");
                 printBoard(boardPrime, "My Ships:");
                 printBoard(boardTrack, "My Shots:");
             }
